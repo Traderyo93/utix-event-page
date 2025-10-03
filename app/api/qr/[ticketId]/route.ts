@@ -3,8 +3,9 @@ import QRCode from 'qrcode';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { ticketId: string } }
+  context: { params: Promise<{ ticketId: string }> }
 ) {
+  const params = await context.params;
   const ticketId = params.ticketId;
   const timestamp = Date.now();
 
