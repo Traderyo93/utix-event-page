@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes blob-shift {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: translate(50px, -80px) scale(1.2) rotate(5deg);
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+    transform: translate(-40px, 60px) scale(0.9) rotate(-3deg);
+  }
+  75% {
+    border-radius: 40% 50% 60% 30% / 70% 40% 50% 60%;
+    transform: translate(30px, 20px) scale(1.1) rotate(8deg);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+}
+
+.animated-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-gradient::before,
+.animated-gradient::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.animated-gradient::before {
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(255, 141, 127, 0.5) 0%, rgba(255, 141, 127, 0.25) 40%, transparent 70%);
+  animation: blob-shift 10s ease-in-out infinite;
+  filter: blur(90px);
+  opacity: 0.6;
+}
+
+.animated-gradient::after {
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(ellipse, rgba(251, 146, 60, 0.45) 0%, rgba(251, 146, 60, 0.2) 40%, transparent 70%);
+  animation: blob-shift 12s ease-in-out infinite reverse;
+  filter: blur(90px);
+  opacity: 0.6;
+}
+
+.animated-gradient > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
